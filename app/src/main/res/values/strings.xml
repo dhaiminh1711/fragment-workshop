@@ -1,0 +1,9 @@
+<resources>
+    // Application name
+    <string name="app_name">FragmentCommunication</string>
+
+    <string name="button_next">Tiếp theo</string>
+
+    <string name="main_activity_title_txt" translatable="false">Main Activity</string>
+    <string name="button_submit">Gửi</string>
+</resources>
