@@ -1,18 +1,26 @@
 package com.workshop.samsung.examples.screen1.fragment
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.workshop.samsung.R
+import androidx.fragment.app.activityViewModels
 import com.workshop.samsung.databinding.FragmentFirstBinding
+import com.workshop.samsung.examples.screen1.viewmodel.Screen1ViewModel
 
 class FirstFragment : Fragment() {
-    private lateinit var binding: FragmentFirstBinding
+    /* With the help of Interface
+        Step 1: Create an interface in fragment class
+        Step 2: Implement the interface in activity class
+        Step 3: Call the interface method from fragment class
+        Step 4: Set listener variable to null when fragment is detached
+    */
+
     private var firstFragmentListener: FirstFragmentListener? = null
+    private lateinit var binding: FragmentFirstBinding
+    private val screen1ViewModel: Screen1ViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View {
@@ -25,18 +33,16 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            btnSubmit.setOnClickListener {
+            btnInterfaceSubmit.setOnClickListener {
                 firstFragmentListener?.sendText(binding.edtMessage.text.toString())
+            }
+
+            btnObserveSubmit.setOnClickListener {
+                screen1ViewModel.changeText(binding.edtMessage.text.toString())
             }
         }
     }
 
-    /* With the help of Interface
-        Step 1: Create an interface in fragment class
-        Step 2: Implement the interface in activity class
-        Step 3: Call the interface method from fragment class
-        Step 4: Set listener variable to null when fragment is detached
-    */
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
@@ -51,11 +57,13 @@ class FirstFragment : Fragment() {
         firstFragmentListener = null
     }
 
+    fun clearText() {
+        binding.edtMessage.text = null
+    }
+
     interface FirstFragmentListener {
         fun sendText(text: String)
     }
-
-    // 2. With the help of ViewModel
 
     companion object {
         fun newInstance() = FirstFragment()

@@ -4,13 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.workshop.samsung.databinding.ActivityMainBinding
 import com.workshop.samsung.examples.screen1.fragment.FirstFragment
+import com.workshop.samsung.examples.screen1.viewmodel.Screen1ViewModel
 import com.workshop.samsung.examples.screen2.activity.SecondActivity
 
 class MainActivity : AppCompatActivity(), FirstFragment.FirstFragmentListener {
+
     private lateinit var binding: ActivityMainBinding
     private var firstFragment: FirstFragment? = null
+    private val screen1ViewModel: Screen1ViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +23,7 @@ class MainActivity : AppCompatActivity(), FirstFragment.FirstFragmentListener {
 
         if (firstFragment == null) {
             firstFragment = FirstFragment.newInstance()
+
             supportFragmentManager.beginTransaction().add(binding.fragmentContainer.id,
                 firstFragment!!, FIRST_FRAGMENT_TAG).commit()
         }
@@ -28,11 +33,23 @@ class MainActivity : AppCompatActivity(), FirstFragment.FirstFragmentListener {
                 val intent = Intent(this@MainActivity, SecondActivity::class.java)
                 startActivity(intent)
             }
+
+            btnClearText.setOnClickListener {
+                (supportFragmentManager.findFragmentByTag(FIRST_FRAGMENT_TAG) as FirstFragment).clearText()
+            }
+        }
+
+        screen1ViewModel.text.observe(this) { text ->
+            Toast.makeText(this@MainActivity, "Main Activity receive a message (Observe)", Toast.LENGTH_LONG).show()
+
+            binding.apply {
+                txtResult.text = text
+            }
         }
     }
 
     override fun sendText(text: String) {
-        Toast.makeText(this@MainActivity, "Main Activity receive a message", Toast.LENGTH_LONG).show()
+        Toast.makeText(this@MainActivity, "Main Activity receive a message (Interface)", Toast.LENGTH_LONG).show()
 
         binding.apply {
             txtResult.text = text

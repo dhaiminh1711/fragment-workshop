@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/purple_500"
     tools:context=".examples.screen1.fragment.FirstFragment">
 
@@ -19,15 +19,36 @@
         android:textColor="@color/teal_700"
         android:textColorHint="@color/teal_700" />
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginStart="@dimen/spacing_normal"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="@dimen/spacing_normal"
         android:layout_marginBottom="@dimen/spacing_normal"
-        android:backgroundTint="@color/teal_200"
-        android:text="@string/button_submit" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnInterfaceSubmit"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/teal_200"
+            android:text="@string/button_interface_submit" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"/>
+
+        <Button
+            android:id="@+id/btnObserveSubmit"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/teal_200"
+            android:text="@string/button_observe_submit" />
+    </LinearLayout>
 </FrameLayout>

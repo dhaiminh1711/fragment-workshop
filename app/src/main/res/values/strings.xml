@@ -5,5 +5,7 @@
     <string name="button_next">Tiếp theo</string>
 
     <string name="main_activity_title_txt" translatable="false">Main Activity</string>
-    <string name="button_submit">Gửi</string>
+    <string name="button_interface_submit" translatable="false">Interface</string>
+    <string name="button_observe_submit" translatable="false">Observe</string>
+    <string name="button_clear_text" translatable="false">Clear Fragment EditText</string>
 </resources>
