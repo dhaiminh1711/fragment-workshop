@@ -9,6 +9,7 @@ import com.workshop.samsung.databinding.ActivityMainBinding
 import com.workshop.samsung.examples.screen1.fragment.FirstFragment
 import com.workshop.samsung.examples.screen1.viewmodel.Screen1ViewModel
 import com.workshop.samsung.examples.screen2.activity.SecondActivity
+import com.workshop.samsung.examples.utils.LogUtils
 
 class MainActivity : AppCompatActivity(), FirstFragment.FirstFragmentListener {
 
@@ -46,6 +47,36 @@ class MainActivity : AppCompatActivity(), FirstFragment.FirstFragmentListener {
                 txtResult.text = text
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        LogUtils.showLog("onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        LogUtils.showLog("onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        LogUtils.showLog("onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        LogUtils.showLog("onStop")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        LogUtils.showLog("onRestart")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LogUtils.showLog("onDestroy")
     }
 
     override fun sendText(text: String) {
