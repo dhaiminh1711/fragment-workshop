@@ -25,8 +25,9 @@ class MainActivity : AppCompatActivity(), FirstFragment.FirstFragmentListener {
         if (firstFragment == null) {
             firstFragment = FirstFragment.newInstance()
 
-            supportFragmentManager.beginTransaction().add(binding.fragmentContainer.id,
-                firstFragment!!, FIRST_FRAGMENT_TAG).commit()
+            supportFragmentManager.beginTransaction()
+                .add(binding.fragmentContainer.id, firstFragment!!, FIRST_FRAGMENT_TAG)
+                .commit()
         }
 
         binding.apply {

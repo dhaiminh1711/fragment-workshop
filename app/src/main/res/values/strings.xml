@@ -8,4 +8,5 @@
     <string name="button_interface_submit" translatable="false">Interface</string>
     <string name="button_observe_submit" translatable="false">Observe</string>
     <string name="button_clear_text" translatable="false">Clear Fragment EditText</string>
+    <string name="button_send" translatable="false">Send</string>
 </resources>
